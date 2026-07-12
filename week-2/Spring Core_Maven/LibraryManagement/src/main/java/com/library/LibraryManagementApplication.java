@@ -15,28 +15,35 @@ import java.util.List;
 public class LibraryManagementApplication {
 
     public static void main(String[] args) {
+        System.out.println("=== Loading Application Context ===");
         // Load the Spring Application Context from the XML configuration file
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        // Retrieve the BookService bean from the context
-        BookService bookService = context.getBean("bookService", BookService.class);
-
-        // Test: Retrieve all books
-        System.out.println("=== Library Management Application ===");
-        System.out.println("\n--- Listing all books ---");
-        List<String> books = bookService.getAllBooks();
-        for (String book : books) {
+        System.out.println("\n=== Testing Setter Injection ===");
+        // Retrieve the Setter Injected BookService bean
+        BookService serviceWithSetter = context.getBean("bookServiceSetter", BookService.class);
+        List<String> setterBooks = serviceWithSetter.getAllBooks();
+        System.out.println("Books in Setter Service:");
+        for (String book : setterBooks) {
             System.out.println("  * " + book);
         }
 
-        // Test: Add a new book
-        System.out.println("\n--- Adding a new book ---");
-        bookService.addBook("Head First Design Patterns by Eric Freeman");
+        System.out.println("\n=== Testing Constructor Injection ===");
+        // Retrieve the Constructor Injected BookService bean
+        BookService serviceWithConstructor = context.getBean("bookServiceConstructor", BookService.class);
+        List<String> constructorBooks = serviceWithConstructor.getAllBooks();
+        System.out.println("Books in Constructor Service:");
+        for (String book : constructorBooks) {
+            System.out.println("  * " + book);
+        }
 
-        // Test: Verify the book was added
-        System.out.println("\n--- Updated book list ---");
-        books = bookService.getAllBooks();
-        for (String book : books) {
+        // Test modification via setter service and verify it reflects in constructor service (sharing the same repository singleton bean)
+        System.out.println("\n=== Testing Shared Repository Bean ===");
+        System.out.println("Adding book via Setter-injected service...");
+        serviceWithSetter.addBook("Spring in Action by Craig Walls");
+        
+        System.out.println("Listing books from Constructor-injected service to verify repository state:");
+        for (String book : serviceWithConstructor.getAllBooks()) {
             System.out.println("  * " + book);
         }
 

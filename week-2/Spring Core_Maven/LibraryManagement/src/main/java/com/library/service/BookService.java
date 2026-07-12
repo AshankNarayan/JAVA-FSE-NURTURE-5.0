@@ -11,11 +11,23 @@ public class BookService {
 
     private BookRepository bookRepository;
 
+    // Default constructor (required for setter injection)
+    public BookService() {
+        System.out.println("BookService: Instantiated using default constructor.");
+    }
+
+    // Parameterized constructor (required for constructor injection)
+    public BookService(BookRepository bookRepository) {
+        System.out.println("BookService: Instantiated using parameterized constructor (Constructor Injection).");
+        this.bookRepository = bookRepository;
+    }
+
     /**
      * Setter method for dependency injection of BookRepository.
      * Spring uses this setter to wire the BookRepository bean.
      */
     public void setBookRepository(BookRepository bookRepository) {
+        System.out.println("BookService: Setting BookRepository dependency (Setter Injection).");
         this.bookRepository = bookRepository;
     }
 
