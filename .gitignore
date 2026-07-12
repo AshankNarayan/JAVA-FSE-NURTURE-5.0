@@ -1,0 +1,29 @@
+# Java class files
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Virtual VM Crash Logs
+hs_err_pid*
+
+# Build directories
+bin/
+build/
+out/
+target/
+
+# IDE files
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.iws
+.vscode/
+.history/
