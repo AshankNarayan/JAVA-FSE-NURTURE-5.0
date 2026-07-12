@@ -1,0 +1,83 @@
+-- Schema Setup Script for PL/SQL Exercises
+
+-- Drop existing tables if they exist to start clean
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE Loans CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE Accounts CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE Customers CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE Employees CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+-- Create Customers Table
+CREATE TABLE Customers (
+    CustomerID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100) NOT NULL,
+    DOB DATE NOT NULL,
+    Balance NUMBER(15, 2) DEFAULT 0.00,
+    IsVIP VARCHAR2(5) DEFAULT 'FALSE'
+);
+
+-- Create Loans Table
+CREATE TABLE Loans (
+    LoanID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    InterestRate NUMBER(5, 2),
+    EndDate DATE NOT NULL,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Create Accounts Table
+CREATE TABLE Accounts (
+    AccountID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    AccountType VARCHAR2(20),
+    Balance NUMBER(15, 2) DEFAULT 0.00,
+    LastUpdate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Create Employees Table
+CREATE TABLE Employees (
+    EmployeeID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100) NOT NULL,
+    Department VARCHAR2(50) NOT NULL,
+    Salary NUMBER(15, 2) NOT NULL,
+    Bonus NUMBER(15, 2) DEFAULT 0.00
+);
+
+-- Insert Sample Data
+INSERT INTO Customers VALUES (1, 'Alice Smith', TO_DATE('1955-04-12', 'YYYY-MM-DD'), 12000.50, 'FALSE');
+INSERT INTO Customers VALUES (2, 'Bob Jones', TO_DATE('1970-11-23', 'YYYY-MM-DD'), 8500.00, 'FALSE');
+INSERT INTO Customers VALUES (3, 'Charlie Brown', TO_DATE('1940-08-30', 'YYYY-MM-DD'), 15000.00, 'FALSE');
+INSERT INTO Customers VALUES (4, 'David Wilson', TO_DATE('1985-01-15', 'YYYY-MM-DD'), 3000.00, 'FALSE');
+
+INSERT INTO Loans VALUES (101, 1, 6.5, TO_DATE('2026-07-20', 'YYYY-MM-DD')); -- due within 30 days
+INSERT INTO Loans VALUES (102, 2, 7.0, TO_DATE('2026-09-15', 'YYYY-MM-DD')); -- due after 30 days
+INSERT INTO Loans VALUES (103, 3, 5.5, TO_DATE('2026-08-01', 'YYYY-MM-DD')); -- due within 30 days
+INSERT INTO Loans VALUES (104, 4, 8.0, TO_DATE('2027-01-10', 'YYYY-MM-DD'));
+
+INSERT INTO Accounts VALUES (1001, 1, 'Savings', 5000.00, SYSDATE);
+INSERT INTO Accounts VALUES (1002, 1, 'Checking', 7000.50, SYSDATE);
+INSERT INTO Accounts VALUES (1003, 2, 'Savings', 8500.00, SYSDATE);
+INSERT INTO Accounts VALUES (1004, 3, 'Savings', 15000.00, SYSDATE);
+
+INSERT INTO Employees VALUES (201, 'John Doe', 'IT', 60000.00, 0);
+INSERT INTO Employees VALUES (202, 'Jane Smith', 'HR', 55000.00, 0);
+INSERT INTO Employees VALUES (203, 'Mike Ross', 'IT', 70000.00, 0);
+
+COMMIT;
+/
