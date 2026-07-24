@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0b0f19;
+}
+
+.cohort-app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #030712 100%);
+  color: #f8fafc;
+}
+
+.cohort-header {
+  text-align: center;
+  padding: 50px 20px 30px;
+  background: rgba(15, 23, 42, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cohort-logo {
+  font-size: 3rem;
+  display: inline-block;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.4));
+}
+
+.cohort-header h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+
+.cohort-subtitle {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 300;
+}
+
+.cohort-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cohorts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cohort-footer {
+  text-align: center;
+  padding: 24px;
+  color: #475569;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 640px) {
+  .cohort-header h1 {
+    font-size: 1.8rem;
+  }
+}
