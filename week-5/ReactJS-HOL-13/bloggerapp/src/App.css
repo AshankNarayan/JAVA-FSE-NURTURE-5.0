@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #0b0f19;
+  color: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at center, #1a202c 0%, #030712 100%);
+}
+
+.app-header {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(15, 23, 42, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.tab-buttons button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-buttons button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tab-buttons button.active {
+  background: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.content-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.section h2 {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 10px;
+}
+
+.details-card {
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  animation: slideIn 0.3s ease-out;
+}
+
+.details-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.details-card p {
+  color: #cbd5e1;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.book-card h3 { color: #f472b6; }
+.book-card { border-left: 4px solid #f472b6; }
+
+.blog-card h3 { color: #a3e635; }
+.blog-card { border-left: 4px solid #a3e635; }
+
+.course-card h3 { color: #facc15; }
+.course-card { border-left: 4px solid #facc15; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
